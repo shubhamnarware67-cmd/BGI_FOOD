@@ -1,0 +1,2729 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BGI Food — Bhopal's Best Food Delivery</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --org: #FF5722;
+            --org2: #FF7043;
+            --org-light: #FFF3EE;
+            --green: #2E7D32;
+            --red: #C62828;
+            --yellow: #FFB300;
+            --purple: #7C4DFF;
+            --bg: #F6F6F6;
+            --card: #fff;
+            --text: #1A1A1A;
+            --text2: #444;
+            --muted: #777;
+            --border: #E5E5E5;
+            --border2: #CCC;
+            --sh: 0 2px 14px rgba(0, 0, 0, .07);
+            --sh-lg: 0 8px 36px rgba(0, 0, 0, .13);
+            --r: 16px;
+            --rsm: 10px;
+            --rxs: 7px;
+            --rf: 999px;
+        }
+
+        [data-theme=dark] {
+            --bg: #111;
+            --card: #1C1C1C;
+            --text: #F0F0F0;
+            --text2: #CCC;
+            --muted: #888;
+            --border: #2A2A2A;
+            --border2: #383838;
+            --org-light: #1E0D00;
+            --sh: 0 2px 14px rgba(0, 0, 0, .4);
+            --sh-lg: 0 8px 36px rgba(0, 0, 0, .55);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            transition: background .3s, color .3s;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Syne', sans-serif;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border2);
+            border-radius: 99px;
+        }
+
+        /* NAV */
+        nav {
+            background: var(--card);
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 1px 6px rgba(0, 0, 0, .05);
+            transition: background .3s;
+        }
+
+        .ni {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 62px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--org);
+            letter-spacing: -.03em;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .brand b {
+            color: var(--text);
+        }
+
+        .nloc {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .8rem;
+            color: var(--muted);
+            cursor: pointer;
+            padding: 6px 9px;
+            border-radius: 9px;
+            transition: .2s;
+            flex-shrink: 0;
+        }
+
+        .nloc:hover {
+            background: var(--bg);
+        }
+
+        .nloc strong {
+            color: var(--text);
+            font-size: .82rem;
+        }
+
+        .nsearch {
+            flex: 1;
+            max-width: 420px;
+            position: relative;
+        }
+
+        .nsearch input {
+            width: 100%;
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: var(--rf);
+            padding: 9px 16px 9px 40px;
+            font-size: .87rem;
+            color: var(--text);
+            outline: none;
+            transition: .2s;
+        }
+
+        .nsearch input:focus {
+            border-color: var(--org);
+            background: var(--card);
+        }
+
+        .nsearch .ico {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        .nav-r {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-left: auto;
+        }
+
+        .ibtn {
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: 50%;
+            width: 37px;
+            height: 37px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: .2s;
+            color: var(--text);
+        }
+
+        .ibtn:hover {
+            background: var(--org-light);
+            border-color: var(--org);
+        }
+
+        .cbtn {
+            background: var(--org);
+            color: #fff;
+            border: none;
+            border-radius: var(--rf);
+            padding: 8px 16px;
+            font-size: .84rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: .2s;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .cbtn:hover {
+            background: var(--org2);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(255, 87, 34, .3);
+        }
+
+        .cbadge {
+            background: #fff;
+            color: var(--org);
+            border-radius: 50%;
+            width: 17px;
+            height: 17px;
+            font-size: .65rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lbtn {
+            background: none;
+            border: 1.5px solid var(--org);
+            color: var(--org);
+            border-radius: var(--rf);
+            padding: 7px 16px;
+            font-size: .82rem;
+            font-weight: 700;
+            transition: .2s;
+        }
+
+        .lbtn:hover {
+            background: var(--org-light);
+        }
+
+        /* OFFERS */
+        .strip {
+            background: var(--org);
+            overflow: hidden;
+            padding: 8px 0;
+        }
+
+        .strk {
+            display: flex;
+            gap: 40px;
+            animation: scrollX 22s linear infinite;
+            white-space: nowrap;
+        }
+
+        .strk:hover {
+            animation-play-state: paused;
+        }
+
+        .sitem {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: .79rem;
+            font-weight: 600;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .sitem em {
+            background: rgba(255, 255, 255, .22);
+            border-radius: 4px;
+            padding: 1px 6px;
+            font-style: normal;
+            font-size: .67rem;
+            font-weight: 800;
+            letter-spacing: .05em;
+        }
+
+        @keyframes scrollX {
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #160700 0%, #381600 45%, #190B00 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 50px 20px 58px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 2px 2px, rgba(255, 87, 34, .09) 1px, transparent 0);
+            background-size: 38px 38px;
+            pointer-events: none;
+        }
+
+        .hglow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 87, 34, .16) 0%, transparent 70%);
+            top: -180px;
+            right: -80px;
+            pointer-events: none;
+        }
+
+        .hin {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hlabel {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255, 87, 34, .16);
+            border: 1px solid rgba(255, 87, 34, .32);
+            border-radius: var(--rf);
+            padding: 4px 13px;
+            font-size: .7rem;
+            font-weight: 700;
+            color: #FF8A65;
+            letter-spacing: .06em;
+            margin-bottom: 16px;
+            animation: fadeUp .5s ease both;
+        }
+
+        .hdot {
+            width: 7px;
+            height: 7px;
+            background: var(--org);
+            border-radius: 50%;
+            animation: pulse 1.6s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 87, 34, .6);
+            }
+
+            60% {
+                box-shadow: 0 0 0 8px transparent;
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(1.9rem, 4vw, 3.5rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.1;
+            letter-spacing: -.03em;
+            animation: fadeUp .6s .1s ease both;
+        }
+
+        .hero h1 em {
+            color: var(--org);
+            font-style: normal;
+        }
+
+        .hero p {
+            font-size: .98rem;
+            color: rgba(255, 255, 255, .58);
+            line-height: 1.75;
+            margin: 14px 0 26px;
+            max-width: 390px;
+            animation: fadeUp .6s .2s ease both;
+        }
+
+        .hctas {
+            display: flex;
+            gap: 11px;
+            flex-wrap: wrap;
+            animation: fadeUp .6s .3s ease both;
+        }
+
+        .hbtn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 11px 22px;
+            border-radius: var(--rf);
+            font-size: .88rem;
+            font-weight: 700;
+            border: none;
+            transition: .22s;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .hbtn-org {
+            background: var(--org);
+            color: #fff;
+        }
+
+        .hbtn-org:hover {
+            background: var(--org2);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 87, 34, .38);
+        }
+
+        .hbtn-out {
+            background: transparent;
+            color: #fff;
+            border: 1.5px solid rgba(255, 255, 255, .28);
+        }
+
+        .hbtn-out:hover {
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .hstats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            animation: fadeUp .6s .4s ease both;
+        }
+
+        .hsn {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--org);
+        }
+
+        .hsl {
+            font-size: .67rem;
+            color: rgba(255, 255, 255, .38);
+            letter-spacing: .05em;
+            margin-top: 2px;
+        }
+
+        .hvisual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeUp .8s .25s ease both;
+        }
+
+        .fmosaic {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            transform: rotate(-4deg);
+        }
+
+        .ftile {
+            background: rgba(255, 255, 255, .07);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 17px;
+            padding: 15px 11px;
+            text-align: center;
+            transition: .3s;
+            cursor: pointer;
+        }
+
+        .ftile:hover {
+            background: rgba(255, 255, 255, .13);
+            transform: translateY(-5px) rotate(3deg);
+        }
+
+        .ftile .fe {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .ftile .fn {
+            font-size: .68rem;
+            color: rgba(255, 255, 255, .75);
+            font-weight: 600;
+        }
+
+        .ftile .fp {
+            font-size: .74rem;
+            color: var(--org);
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0);
+            }
+
+            70% {
+                transform: scale(1.25);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* MAIN */
+        main {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 26px 20px 90px;
+        }
+
+        .sh {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .st {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .sa {
+            font-size: .78rem;
+            color: var(--org);
+            font-weight: 600;
+            margin-left: auto;
+            cursor: pointer;
+        }
+
+        .sa:hover {
+            text-decoration: underline;
+        }
+
+        /* CATS */
+        .cats {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scrollbar-width: none;
+        }
+
+        .cats::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cc {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .cimg {
+            width: 68px;
+            height: 68px;
+            border-radius: 19px;
+            background: var(--org-light);
+            border: 2.5px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.85rem;
+            transition: .3s;
+        }
+
+        .cc:hover .cimg {
+            transform: scale(1.08);
+        }
+
+        .cc.on .cimg {
+            border-color: var(--org);
+            box-shadow: 0 4px 14px rgba(255, 87, 34, .26);
+        }
+
+        .clbl {
+            font-size: .7rem;
+            font-weight: 600;
+            color: var(--muted);
+            transition: .2s;
+        }
+
+        .cc.on .clbl {
+            color: var(--org);
+        }
+
+        /* FILTERS */
+        .filters {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 3px;
+            scrollbar-width: none;
+            margin: 16px 0 20px;
+        }
+
+        .filters::-webkit-scrollbar {
+            display: none;
+        }
+
+        .fc {
+            flex-shrink: 0;
+            padding: 6px 14px;
+            border-radius: var(--rf);
+            font-size: .79rem;
+            font-weight: 600;
+            border: 1.5px solid var(--border);
+            background: var(--card);
+            color: var(--muted);
+            white-space: nowrap;
+            transition: .2s;
+        }
+
+        .fc:hover,
+        .fc.on {
+            background: var(--org);
+            color: #fff;
+            border-color: var(--org);
+        }
+
+        /* FEATURED */
+        .featrow {
+            display: flex;
+            gap: 13px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scrollbar-width: none;
+            margin-bottom: 30px;
+        }
+
+        .featrow::-webkit-scrollbar {
+            display: none;
+        }
+
+        .featcard {
+            flex-shrink: 0;
+            width: 250px;
+            border-radius: var(--r);
+            overflow: hidden;
+            background: var(--card);
+            box-shadow: var(--sh);
+            cursor: pointer;
+            transition: .25s;
+            position: relative;
+        }
+
+        .featcard:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--sh-lg);
+        }
+
+        .fimg {
+            height: 136px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+
+        .frib {
+            position: absolute;
+            top: 9px;
+            right: 9px;
+            background: rgba(0, 0, 0, .7);
+            color: #fff;
+            border-radius: var(--rf);
+            padding: 3px 9px;
+            font-size: .64rem;
+            font-weight: 800;
+            letter-spacing: .04em;
+            backdrop-filter: blur(5px);
+        }
+
+        .finfo {
+            padding: 11px 13px;
+        }
+
+        .fname {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .88rem;
+            color: var(--text);
+        }
+
+        .fsub {
+            font-size: .73rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* MENU GRID */
+        .mgrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+            gap: 17px;
+        }
+
+        .mcard {
+            background: var(--card);
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: var(--sh);
+            transition: .25s;
+            position: relative;
+        }
+
+        .mcard:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--sh-lg);
+        }
+
+        .mcimg {
+            width: 100%;
+            height: 174px;
+            background: linear-gradient(135deg, var(--org-light), #FFE0CC);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme=dark] .mcimg {
+            background: linear-gradient(135deg, #280F00, #1A0900);
+        }
+
+        .mcimg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 55%, rgba(0, 0, 0, .16));
+        }
+
+        .mcbadges {
+            position: absolute;
+            top: 9px;
+            left: 9px;
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            z-index: 1;
+        }
+
+        .badge {
+            padding: 2px 7px;
+            border-radius: var(--rf);
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: .03em;
+        }
+
+        .bbs {
+            background: var(--yellow);
+            color: #111;
+        }
+
+        .bft {
+            background: var(--org);
+            color: #fff;
+        }
+
+        .boff {
+            background: #E53935;
+            color: #fff;
+        }
+
+        .bnew {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        .mcfav {
+            position: absolute;
+            top: 9px;
+            right: 9px;
+            width: 29px;
+            height: 29px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .88);
+            border: none;
+            font-size: .9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .2s;
+            z-index: 1;
+        }
+
+        .mcfav:hover {
+            background: #fff;
+            transform: scale(1.15);
+        }
+
+        .mcbody {
+            padding: 12px 14px 14px;
+        }
+
+        .mctype {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 4px;
+        }
+
+        .vd {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            border: 1.5px solid;
+        }
+
+        .vd.veg {
+            border-color: var(--green);
+            background: var(--green);
+        }
+
+        .vd.nonveg {
+            border-color: var(--red);
+            background: var(--red);
+        }
+
+        .vtl {
+            font-size: .68rem;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .spl {
+            font-size: .68rem;
+            margin-left: auto;
+        }
+
+        .mcname {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .94rem;
+            color: var(--text);
+            line-height: 1.26;
+            cursor: pointer;
+        }
+
+        .mcname:hover {
+            color: var(--org);
+        }
+
+        .mcshort {
+            font-size: .75rem;
+            color: var(--muted);
+            margin-top: 3px;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .mcmeta {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 9px;
+        }
+
+        .rpill {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            background: #F1F8E9;
+            border-radius: var(--rf);
+            padding: 2px 7px;
+        }
+
+        [data-theme=dark] .rpill {
+            background: #1A2A1A;
+        }
+
+        .rpill .star {
+            color: #43A047;
+            font-size: .73rem;
+        }
+
+        .rpill span {
+            font-size: .72rem;
+            font-weight: 700;
+            color: #2E7D32;
+        }
+
+        [data-theme=dark] .rpill span {
+            color: #66BB6A;
+        }
+
+        .tpill {
+            font-size: .71rem;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .rvpill {
+            font-size: .68rem;
+            color: var(--muted);
+            margin-left: auto;
+        }
+
+        .mcpr {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .pnow {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .pwas {
+            font-size: .77rem;
+            color: var(--muted);
+            text-decoration: line-through;
+            margin-left: 5px;
+        }
+
+        .aw {
+            margin-left: auto;
+        }
+
+        .abtn {
+            background: transparent;
+            border: 1.5px solid var(--org);
+            color: var(--org);
+            border-radius: var(--rxs);
+            padding: 5px 13px;
+            font-size: .8rem;
+            font-weight: 700;
+            transition: .22s;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .abtn:hover {
+            background: var(--org);
+            color: #fff;
+            transform: scale(1.04);
+        }
+
+        .ctr {
+            display: none;
+            align-items: center;
+            border-radius: var(--rxs);
+            overflow: hidden;
+            border: 1.5px solid var(--org);
+        }
+
+        .ctr.on {
+            display: flex;
+            animation: pop .18s ease;
+        }
+
+        .ctr button {
+            background: var(--org);
+            color: #fff;
+            border: none;
+            width: 29px;
+            height: 29px;
+            font-size: .95rem;
+            font-weight: 700;
+            transition: .15s;
+        }
+
+        .ctr button:hover {
+            background: var(--org2);
+        }
+
+        .ctr span {
+            padding: 0 9px;
+            font-size: .85rem;
+            font-weight: 700;
+            min-width: 26px;
+            text-align: center;
+            color: var(--text);
+        }
+
+        /* FLOAT CART */
+        .fcart {
+            position: fixed;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            background: var(--org);
+            color: #fff;
+            border: none;
+            border-radius: var(--rf);
+            padding: 13px 26px;
+            font-size: .93rem;
+            font-weight: 700;
+            font-family: 'Syne', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            box-shadow: 0 8px 30px rgba(255, 87, 34, .45);
+            transition: .4s cubic-bezier(.4, 0, .2, 1);
+            z-index: 88;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .fcart.on {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .fcart:hover {
+            background: var(--org2);
+            transform: translateX(-50%) translateY(-3px);
+        }
+
+        .fcc {
+            background: rgba(255, 255, 255, .24);
+            border-radius: var(--rf);
+            padding: 1px 9px;
+            font-size: .78rem;
+        }
+
+        .fct {
+            opacity: .85;
+        }
+
+        /* OVERLAY + DRAWER */
+        .ovl {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .55);
+            z-index: 190;
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s;
+            backdrop-filter: blur(4px);
+        }
+
+        .ovl.on {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .drawer {
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: min(420px, 100vw);
+            background: var(--card);
+            z-index: 200;
+            transform: translateX(100%);
+            transition: .38s cubic-bezier(.4, 0, .2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 50px rgba(0, 0, 0, .18);
+        }
+
+        .drawer.on {
+            transform: translateX(0);
+        }
+
+        .dh {
+            padding: 17px 21px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            flex-shrink: 0;
+        }
+
+        .dh h2 {
+            font-size: 1.08rem;
+            font-weight: 800;
+        }
+
+        .dh .x {
+            margin-left: auto;
+            background: none;
+            border: none;
+            font-size: 1.35rem;
+            color: var(--muted);
+            line-height: 1;
+            padding: 2px;
+        }
+
+        .dbody {
+            flex: 1;
+            overflow-y: auto;
+            padding: 13px 21px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 52px 0;
+            color: var(--muted);
+        }
+
+        .empty .ee {
+            font-size: 3.3rem;
+            display: block;
+            margin-bottom: 9px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .ci {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cie {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: var(--org-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .cin {
+            font-weight: 600;
+            font-size: .87rem;
+            line-height: 1.25;
+            color: var(--text);
+        }
+
+        .cip {
+            font-size: .78rem;
+            color: var(--org);
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .cictl {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            border-radius: 7px;
+            overflow: hidden;
+            border: 1.5px solid var(--org);
+        }
+
+        .cictl button {
+            background: var(--org);
+            color: #fff;
+            border: none;
+            width: 27px;
+            height: 27px;
+            font-size: .93rem;
+            font-weight: 700;
+            transition: .15s;
+        }
+
+        .cictl button:hover {
+            background: var(--org2);
+        }
+
+        .cictl span {
+            padding: 0 7px;
+            font-size: .82rem;
+            font-weight: 700;
+            min-width: 21px;
+            text-align: center;
+            color: var(--text);
+        }
+
+        /* promo */
+        .pbox {
+            background: var(--org-light);
+            border-radius: var(--rsm);
+            padding: 10px 12px;
+            margin: 13px 0;
+            display: flex;
+            gap: 7px;
+            align-items: center;
+        }
+
+        .pbox input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: .83rem;
+            color: var(--text);
+        }
+
+        .papply {
+            background: var(--org);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 12px;
+            font-size: .74rem;
+            font-weight: 700;
+        }
+
+        /* bill */
+        .bill {
+            background: var(--bg);
+            border-radius: var(--rsm);
+            padding: 12px 13px;
+            margin: 7px 0;
+        }
+
+        .br {
+            display: flex;
+            justify-content: space-between;
+            font-size: .81rem;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .br:last-child {
+            margin-bottom: 0;
+        }
+
+        .br.tot {
+            font-weight: 800;
+            color: var(--text);
+            font-size: .91rem;
+            border-top: 1px dashed var(--border2);
+            padding-top: 7px;
+            margin-top: 3px;
+        }
+
+        .dfooter {
+            padding: 13px 21px;
+            border-top: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .chkbtn {
+            width: 100%;
+            background: var(--org);
+            color: #fff;
+            border: none;
+            border-radius: var(--r);
+            padding: 14px;
+            font-size: .93rem;
+            font-weight: 800;
+            font-family: 'Syne', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: .2s;
+        }
+
+        .chkbtn:hover {
+            background: var(--org2);
+        }
+
+        /* ORDER TRACKER */
+        .tbar {
+            background: linear-gradient(135deg, #160700, #381600);
+            border-radius: var(--r);
+            padding: 19px 21px;
+            margin-bottom: 26px;
+            display: none;
+        }
+
+        .tbar.on {
+            display: block;
+            animation: fadeUp .4s ease;
+        }
+
+        .ttitle {
+            color: #fff;
+            font-weight: 700;
+            font-size: .91rem;
+            font-family: 'Syne', sans-serif;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .tsteps {
+            display: flex;
+            align-items: center;
+        }
+
+        .ts {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            flex: 1;
+        }
+
+        .tsd {
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
+            border: 2.5px solid rgba(255, 255, 255, .18);
+            background: rgba(255, 255, 255, .07);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8rem;
+            transition: .4s;
+        }
+
+        .tsd.done {
+            background: var(--org);
+            border-color: var(--org);
+        }
+
+        .tsd.active {
+            background: var(--org);
+            border-color: var(--org);
+            box-shadow: 0 0 0 7px rgba(255, 87, 34, .2);
+            animation: pulse 1.6s infinite;
+        }
+
+        .tsl {
+            font-size: .6rem;
+            color: rgba(255, 255, 255, .42);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .tsl.done,
+        .tsl.active {
+            color: rgba(255, 255, 255, .88);
+        }
+
+        .tline {
+            flex: 1;
+            height: 2px;
+            background: rgba(255, 255, 255, .1);
+            margin-bottom: 21px;
+        }
+
+        .tline.done {
+            background: var(--org);
+        }
+
+        .teta {
+            background: rgba(255, 87, 34, .14);
+            border: 1px solid rgba(255, 87, 34, .27);
+            border-radius: 7px;
+            padding: 7px 12px;
+            color: #FF8A65;
+            font-size: .76rem;
+            font-weight: 600;
+            margin-top: 11px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .txbtn {
+            margin-left: auto;
+            background: rgba(255, 255, 255, .1);
+            border: none;
+            color: rgba(255, 255, 255, .7);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8rem;
+        }
+
+        /* ITEM MODAL */
+        .movl {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .62);
+            z-index: 290;
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .movl.on {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .imodal {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 110%);
+            width: min(570px, 100vw);
+            background: var(--card);
+            border-radius: 22px 22px 0 0;
+            z-index: 300;
+            transition: .38s cubic-bezier(.4, 0, .2, 1);
+            max-height: 92vh;
+            overflow-y: auto;
+        }
+
+        .imodal.on {
+            transform: translate(-50%, 0);
+        }
+
+        .mhero {
+            width: 100%;
+            height: 210px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            position: relative;
+            background: linear-gradient(135deg, var(--org-light), #FFE0CC);
+        }
+
+        [data-theme=dark] .mhero {
+            background: linear-gradient(135deg, #280F00, #1A0900);
+        }
+
+        .mx {
+            position: absolute;
+            top: 11px;
+            right: 11px;
+            background: rgba(255, 255, 255, .88);
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mx:hover {
+            background: #fff;
+        }
+
+        .mbody {
+            padding: 19px 21px 30px;
+        }
+
+        .mname {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
+        .mdesc {
+            color: var(--muted);
+            font-size: .86rem;
+            margin-top: 7px;
+            line-height: 1.65;
+        }
+
+        .mtags {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            margin-top: 9px;
+        }
+
+        .mtag {
+            background: var(--bg);
+            border-radius: var(--rf);
+            padding: 3px 10px;
+            font-size: .71rem;
+            font-weight: 500;
+            color: var(--muted);
+        }
+
+        .minfo-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .minfo {
+            font-size: .76rem;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .minfo strong {
+            color: var(--text);
+        }
+
+        .maddons {
+            margin-top: 14px;
+        }
+
+        .mat {
+            font-size: .8rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 7px;
+        }
+
+        .marow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 7px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .marow:last-child {
+            border-bottom: none;
+        }
+
+        .man {
+            font-size: .8rem;
+            color: var(--text);
+        }
+
+        .marp {
+            font-size: .78rem;
+            color: var(--org);
+            font-weight: 600;
+        }
+
+        .mack {
+            width: 17px;
+            height: 17px;
+            accent-color: var(--org);
+        }
+
+        .mbot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 16px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        .mpr {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .mwas {
+            font-size: .86rem;
+            color: var(--muted);
+            text-decoration: line-through;
+            margin-left: 7px;
+        }
+
+        .madd {
+            background: var(--org);
+            color: #fff;
+            border: none;
+            border-radius: var(--rsm);
+            padding: 11px 24px;
+            font-size: .9rem;
+            font-weight: 700;
+            font-family: 'Syne', sans-serif;
+            transition: .2s;
+        }
+
+        .madd:hover {
+            background: var(--org2);
+            transform: scale(1.04);
+        }
+
+        /* REVIEWS */
+        .rvsec {
+            margin-top: 34px;
+        }
+
+        .rvgrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 13px;
+            margin-top: 7px;
+        }
+
+        .rvc {
+            background: var(--card);
+            border-radius: var(--r);
+            padding: 15px 17px;
+            box-shadow: var(--sh);
+            border: 1px solid var(--border);
+        }
+
+        .rvh {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 9px;
+        }
+
+        .rva {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: #fff;
+            font-weight: 700;
+            font-size: .86rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .rvn {
+            font-weight: 600;
+            font-size: .85rem;
+            color: var(--text);
+        }
+
+        .rvd {
+            font-size: .7rem;
+            color: var(--muted);
+            margin-top: 1px;
+        }
+
+        .rvs {
+            display: flex;
+            gap: 2px;
+            margin-left: auto;
+        }
+
+        .rvs span {
+            font-size: .85rem;
+        }
+
+        .rvt {
+            font-size: .8rem;
+            color: var(--text2);
+            line-height: 1.6;
+        }
+
+        .rvi {
+            font-size: .73rem;
+            color: var(--org);
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* LOGIN MODAL */
+        .lmodal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(.9);
+            width: min(430px, 95vw);
+            background: var(--card);
+            border-radius: 22px;
+            z-index: 310;
+            padding: 30px;
+            box-shadow: 0 22px 70px rgba(0, 0, 0, .25);
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s;
+        }
+
+        .lmodal.on {
+            opacity: 1;
+            pointer-events: all;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .lmodal h2 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            margin-bottom: 3px;
+        }
+
+        .lmodal>p {
+            font-size: .82rem;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .ig {
+            margin-bottom: 12px;
+        }
+
+        .ig label {
+            font-size: .76rem;
+            font-weight: 600;
+            color: var(--text2);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .ig input {
+            width: 100%;
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: var(--rsm);
+            padding: 10px 13px;
+            font-size: .88rem;
+            color: var(--text);
+            outline: none;
+            transition: .2s;
+        }
+
+        .ig input:focus {
+            border-color: var(--org);
+            background: var(--card);
+        }
+
+        .lsubmit {
+            width: 100%;
+            background: var(--org);
+            color: #fff;
+            border: none;
+            border-radius: var(--rsm);
+            padding: 12px;
+            font-size: .93rem;
+            font-weight: 800;
+            font-family: 'Syne', sans-serif;
+            transition: .2s;
+            margin-top: 3px;
+        }
+
+        .lsubmit:hover {
+            background: var(--org2);
+        }
+
+        .lswitch {
+            text-align: center;
+            font-size: .8rem;
+            color: var(--muted);
+            margin-top: 12px;
+        }
+
+        .lswitch a {
+            color: var(--org);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .socrow {
+            display: flex;
+            gap: 9px;
+            margin-bottom: 16px;
+        }
+
+        .socbtn {
+            flex: 1;
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: var(--rsm);
+            padding: 9px;
+            font-size: .8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: var(--text);
+            transition: .2s;
+        }
+
+        .socbtn:hover {
+            background: var(--border);
+        }
+
+        .ldiv {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 14px;
+            font-size: .74rem;
+            color: var(--muted);
+        }
+
+        .ldiv::before,
+        .ldiv::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ORDER HISTORY */
+        .hpanel {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: min(430px, 100vw);
+            background: var(--card);
+            z-index: 200;
+            transform: translateX(-100%);
+            transition: .38s cubic-bezier(.4, 0, .2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 10px 0 50px rgba(0, 0, 0, .14);
+        }
+
+        .hpanel.on {
+            transform: translateX(0);
+        }
+
+        .ohi {
+            border: 1px solid var(--border);
+            border-radius: var(--rsm);
+            padding: 13px 15px;
+            margin-bottom: 9px;
+        }
+
+        .ohh {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 7px;
+        }
+
+        .ohnum {
+            font-weight: 700;
+            font-size: .86rem;
+            color: var(--text);
+            font-family: 'Syne', sans-serif;
+        }
+
+        .ohst {
+            padding: 3px 9px;
+            border-radius: var(--rf);
+            font-size: .68rem;
+            font-weight: 700;
+        }
+
+        .ohst.delivered {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .ohst.preparing {
+            background: #FFF3EE;
+            color: var(--org);
+        }
+
+        .ohitems {
+            font-size: .78rem;
+            color: var(--muted);
+            margin-bottom: 5px;
+        }
+
+        .ohtot {
+            font-size: .83rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .ohdate {
+            font-size: .7rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .ohreord {
+            background: none;
+            border: 1.5px solid var(--org);
+            color: var(--org);
+            border-radius: var(--rf);
+            padding: 4px 12px;
+            font-size: .74rem;
+            font-weight: 700;
+            float: right;
+        }
+
+        /* ADDR MODAL */
+        .amodal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(.9);
+            width: min(450px, 95vw);
+            background: var(--card);
+            border-radius: 19px;
+            z-index: 310;
+            padding: 26px;
+            box-shadow: 0 22px 70px rgba(0, 0, 0, .25);
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s;
+        }
+
+        .amodal.on {
+            opacity: 1;
+            pointer-events: all;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .aoption {
+            border: 1.5px solid var(--border);
+            border-radius: var(--rsm);
+            padding: 12px 14px;
+            margin-bottom: 9px;
+            cursor: pointer;
+            transition: .2s;
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+        }
+
+        .aoption:hover,
+        .aoption.on {
+            border-color: var(--org);
+            background: var(--org-light);
+        }
+
+        .aopticon {
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .aopttext {
+            font-size: .82rem;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .aoptlbl {
+            font-weight: 700;
+            font-size: .76rem;
+            color: var(--org);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* SUCCESS */
+        .succ {
+            position: fixed;
+            inset: 0;
+            background: var(--card);
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 14px;
+            opacity: 0;
+            pointer-events: none;
+            transition: .4s;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .succ.on {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .succe {
+            font-size: 5rem;
+            animation: succBounce .6s ease;
+        }
+
+        @keyframes succBounce {
+            0% {
+                transform: scale(0);
+            }
+
+            60% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .succ h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .succ p {
+            color: var(--muted);
+            max-width: 300px;
+            line-height: 1.6;
+        }
+
+        .succnum {
+            background: var(--org-light);
+            color: var(--org);
+            font-weight: 800;
+            font-family: 'Syne', sans-serif;
+            padding: 5px 14px;
+            border-radius: var(--rf);
+            font-size: .97rem;
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: #1A1A1A;
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: var(--rf);
+            font-size: .82rem;
+            font-weight: 600;
+            z-index: 400;
+            transition: .3s;
+            opacity: 0;
+            pointer-events: none;
+            white-space: nowrap;
+            box-shadow: 0 6px 22px rgba(0, 0, 0, .22);
+        }
+
+        .toast.on {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        [data-theme=dark] .toast {
+            background: #F0F0F0;
+            color: #111;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--card);
+            border-top: 1px solid var(--border);
+            padding: 26px 20px;
+            text-align: center;
+            color: var(--muted);
+            font-size: .78rem;
+        }
+
+        footer .bf {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--org);
+            margin-bottom: 5px;
+        }
+
+        footer .bf b {
+            color: var(--text);
+        }
+
+        footer a {
+            color: var(--org);
+        }
+
+        @media(max-width:760px) {
+            .hin {
+                grid-template-columns: 1fr;
+            }
+
+            .hvisual {
+                display: none;
+            }
+
+            .nloc {
+                display: none;
+            }
+
+            .mgrid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width:490px) {
+            .mgrid {
+                grid-template-columns: 1fr;
+            }
+
+            .nsearch {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="ni">
+            <div class="brand" onclick="scrollTo(0,0)">BGI<b>food</b></div>
+            <div class="nloc" onclick="openAddr()">
+                <span>📍</span>
+                <div><strong id="addrLbl">MP Nagar, Zone II</strong>
+                    <div style="font-size:.68rem;">Bhopal, MP ▾</div>
+                </div>
+            </div>
+            <div class="nsearch">
+                <span class="ico">🔍</span>
+                <input type="text" id="srch" placeholder="Search dishes, cuisines…" oninput="liveSearch(this.value)">
+            </div>
+            <div class="nav-r">
+                <button class="ibtn" onclick="toggleTheme()" id="tbtn" title="Dark mode">🌙</button>
+                <button class="ibtn" onclick="openHistory()" title="Orders">📋</button>
+                <button class="ibtn" onclick="openWishlist()" id="wbtn" title="Wishlist">🤍</button>
+                <button class="lbtn" id="loginBtn" onclick="openLogin()">Login</button>
+                <button class="cbtn" onclick="toggleCart()">
+                    🛒 Cart
+                    <span class="cbadge" id="cbadge" style="display:none">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- OFFERS STRIP -->
+    <div class="strip">
+        <div class="strk">
+            <div class="sitem">🔥 <em>HOT</em> Chicken Dum Biryani just ₹349 · was ₹379</div>
+            <div class="sitem">🎁 <em>50% OFF</em> first order · Use BGIFIRST</div>
+            <div class="sitem">🚀 <em>FREE DELIVERY</em> on orders above ₹299</div>
+            <div class="sitem">🍔 <em>BOGO</em> Burgers every Tuesday!</div>
+            <div class="sitem">⏱ <em>30 MIN</em> delivery or ₹50 cashback</div>
+            <div class="sitem">🌟 <em>NEW</em> Paneer Tandoori Momos — try now!</div>
+            <div class="sitem">🔥 <em>HOT</em> Chicken Dum Biryani just ₹349 · was ₹379</div>
+            <div class="sitem">🎁 <em>50% OFF</em> first order · Use BGIFIRST</div>
+            <div class="sitem">🚀 <em>FREE DELIVERY</em> on orders above ₹299</div>
+            <div class="sitem">🍔 <em>BOGO</em> Burgers every Tuesday!</div>
+            <div class="sitem">⏱ <em>30 MIN</em> delivery or ₹50 cashback</div>
+            <div class="sitem">🌟 <em>NEW</em> Paneer Tandoori Momos — try now!</div>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hglow"></div>
+        <div class="hin">
+            <div>
+                <div class="hlabel"><span class="hdot"></span> BHOPAL'S #1 FOOD DELIVERY</div>
+                <h1>Craving <em>something</em><br>absolutely delicious?</h1>
+                <p>Hot meals from BGI's kitchen, delivered fresh to your door in 30 minutes or less.</p>
+                <div class="hctas">
+                    <button class="hbtn hbtn-org"
+                        onclick="document.getElementById('msec').scrollIntoView({behavior:'smooth'})">🍽️ Order
+                        Now</button>
+                    <button class="hbtn hbtn-out" onclick="showTracker()">📦 Track Order</button>
+                </div>
+                <div class="hstats">
+                    <div>
+                        <div class="hsn">4.8★</div>
+                        <div class="hsl">RATING</div>
+                    </div>
+                    <div>
+                        <div class="hsn">2.5K+</div>
+                        <div class="hsl">CUSTOMERS</div>
+                    </div>
+                    <div>
+                        <div class="hsn">30 min</div>
+                        <div class="hsl">AVG DELIVERY</div>
+                    </div>
+                    <div>
+                        <div class="hsn">23+</div>
+                        <div class="hsl">DISHES</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hvisual">
+                <div class="fmosaic">
+                    <div class="ftile" onclick="gocat('burgers')"><span class="fe">🍔</span>
+                        <div class="fn">Burgers</div>
+                        <div class="fp">₹149+</div>
+                    </div>
+                    <div class="ftile" onclick="gocat('pizza')"><span class="fe">🍕</span>
+                        <div class="fn">Pizza</div>
+                        <div class="fp">₹279+</div>
+                    </div>
+                    <div class="ftile" onclick="gocat('biryani')"><span class="fe">🍚</span>
+                        <div class="fn">Biryani</div>
+                        <div class="fp">₹299+</div>
+                    </div>
+                    <div class="ftile" onclick="gocat('rolls')"><span class="fe">🌯</span>
+                        <div class="fn">Rolls</div>
+                        <div class="fp">₹179+</div>
+                    </div>
+                    <div class="ftile" onclick="gocat('momos')"><span class="fe">🥟</span>
+                        <div class="fn">Momos</div>
+                        <div class="fp">₹149+</div>
+                    </div>
+                    <div class="ftile" onclick="gocat('drinks')"><span class="fe">🥤</span>
+                        <div class="fn">Drinks</div>
+                        <div class="fp">₹49+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN -->
+    <main id="msec">
+
+        <!-- TRACKER -->
+        <div class="tbar" id="tbar">
+            <div class="ttitle">
+                🚀 Your order is on the way!
+                <span style="color:var(--org);font-size:.76rem;margin-left:7px;">BGI7A3F2B</span>
+                <button class="txbtn" onclick="document.getElementById('tbar').classList.remove('on')">×</button>
+            </div>
+            <div class="tsteps">
+                <div class="ts">
+                    <div class="tsd done">✓</div>
+                    <div class="tsl done">Confirmed</div>
+                </div>
+                <div class="tline done"></div>
+                <div class="ts">
+                    <div class="tsd done">✓</div>
+                    <div class="tsl done">Preparing</div>
+                </div>
+                <div class="tline done"></div>
+                <div class="ts">
+                    <div class="tsd active">🛵</div>
+                    <div class="tsl active">Out for Delivery</div>
+                </div>
+                <div class="tline"></div>
+                <div class="ts">
+                    <div class="tsd">🏠</div>
+                    <div class="tsl">Delivered</div>
+                </div>
+            </div>
+            <div class="teta">⏱ Estimated: <strong style="color:#fff;margin-left:4px;">8–12 minutes</strong> · Rider:
+                Ravi K.</div>
+        </div>
+
+        <!-- CATS -->
+        <div class="sh">
+            <div class="st">What are you craving?</div>
+        </div>
+        <div class="cats" id="cats">
+            <div class="cc on" data-cat="all" onclick="setCat(this,'all')">
+                <div class="cimg">🍽️</div>
+                <div class="clbl">All</div>
+            </div>
+            <div class="cc" data-cat="burgers" onclick="setCat(this,'burgers')">
+                <div class="cimg" style="background:#FFF3EE">🍔</div>
+                <div class="clbl">Burgers</div>
+            </div>
+            <div class="cc" data-cat="pizza" onclick="setCat(this,'pizza')">
+                <div class="cimg" style="background:#FFF0F0">🍕</div>
+                <div class="clbl">Pizza</div>
+            </div>
+            <div class="cc" data-cat="biryani" onclick="setCat(this,'biryani')">
+                <div class="cimg" style="background:#FFF8EE">🍚</div>
+                <div class="clbl">Biryani</div>
+            </div>
+            <div class="cc" data-cat="rolls" onclick="setCat(this,'rolls')">
+                <div class="cimg" style="background:#F3F0FF">🌯</div>
+                <div class="clbl">Rolls</div>
+            </div>
+            <div class="cc" data-cat="momos" onclick="setCat(this,'momos')">
+                <div class="cimg" style="background:#F0FBFF">🥟</div>
+                <div class="clbl">Momos</div>
+            </div>
+            <div class="cc" data-cat="noodles" onclick="setCat(this,'noodles')">
+                <div class="cimg" style="background:#FFFDE7">🍜</div>
+                <div class="clbl">Noodles</div>
+            </div>
+            <div class="cc" data-cat="thali" onclick="setCat(this,'thali')">
+                <div class="cimg" style="background:#F1F8E9">🍛</div>
+                <div class="clbl">Thali</div>
+            </div>
+            <div class="cc" data-cat="desserts" onclick="setCat(this,'desserts')">
+                <div class="cimg" style="background:#FCE4EC">🍫</div>
+                <div class="clbl">Desserts</div>
+            </div>
+            <div class="cc" data-cat="drinks" onclick="setCat(this,'drinks')">
+                <div class="cimg" style="background:#E3F2FD">🥤</div>
+                <div class="clbl">Drinks</div>
+            </div>
+        </div>
+
+        <!-- FILTERS -->
+        <div class="filters">
+            <div class="fc on" onclick="setF(this,'all')">All</div>
+            <div class="fc" onclick="setF(this,'veg')">🟢 Pure Veg</div>
+            <div class="fc" onclick="setF(this,'nonveg')">🔴 Non-Veg</div>
+            <div class="fc" onclick="setF(this,'bestseller')">⭐ Bestsellers</div>
+            <div class="fc" onclick="setF(this,'featured')">🔥 Featured</div>
+            <div class="fc" onclick="setF(this,'discount')">🏷️ On Offer</div>
+            <div class="fc" onclick="setF(this,'under200')">💰 Under ₹200</div>
+        </div>
+
+        <!-- FEATURED -->
+        <div class="sh">
+            <div class="st">🔥 Today's Specials</div><span class="sa" onclick="toast('More coming soon!')">See All
+                →</span>
+        </div>
+        <div class="featrow" id="featrow"></div>
+
+        <!-- MENU -->
+        <div class="sh" style="margin-bottom:13px;">
+            <div class="st">📋 Full Menu</div>
+            <span id="mcnt" style="font-size:.78rem;color:var(--muted);margin-left:5px;"></span>
+            <span class="sa" id="sortlbl" onclick="cycleSort()">Sort ↕</span>
+        </div>
+        <div class="mgrid" id="mgrid"></div>
+
+        <!-- REVIEWS -->
+        <div class="rvsec">
+            <div class="sh">
+                <div class="st">💬 Customer Reviews</div><span class="sa"
+                    onclick="toast('All reviews coming soon!')">See All →</span>
+            </div>
+            <div class="rvgrid" id="rvgrid"></div>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="bf">BGI<b>food</b></div>
+        <p>Bhopal, Madhya Pradesh &nbsp;·&nbsp; <a href="#">Help</a> &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp;
+            <a href="#">Terms</a></p>
+        <p style="margin-top:5px;">Made with ❤️ for Bhopal food lovers · © 2025 BGI Food</p>
+    </footer>
+
+    <!-- FLOAT CART -->
+    <button class="fcart" id="fcart" onclick="toggleCart()">
+        🛒 <span class="fcc" id="fcc">0 items</span>
+        <span class="fct" id="fct">₹0</span>
+        <span>→</span>
+    </button>
+
+    <!-- CART -->
+    <div class="ovl" id="covl" onclick="toggleCart()"></div>
+    <div class="drawer" id="cdrawer">
+        <div class="dh"><span>🛒</span>
+            <h2>Your Cart</h2><button class="x" onclick="toggleCart()">×</button>
+        </div>
+        <div class="dbody" id="cbody"></div>
+        <div id="cfooter" style="display:none">
+            <div style="padding:0 21px 3px">
+                <div class="pbox"><span>🏷️</span><input type="text" id="promo"
+                        placeholder="Promo code (try BGIFIRST)"><button class="papply"
+                        onclick="applyPromo()">Apply</button></div>
+                <div class="bill" id="bill"></div>
+            </div>
+            <div class="dfooter"><button class="chkbtn" onclick="doCheckout()"><span id="chklbl">Proceed to
+                        Checkout</span><span>→</span></button></div>
+        </div>
+    </div>
+
+    <!-- ORDER HISTORY -->
+    <div class="ovl" id="hovl" onclick="closeHistory()"></div>
+    <div class="hpanel" id="hpanel">
+        <div class="dh"><span>📋</span>
+            <h2>Order History</h2><button class="x" onclick="closeHistory()">×</button>
+        </div>
+        <div class="dbody" id="hbody"></div>
+    </div>
+
+    <!-- ITEM MODAL -->
+    <div class="movl" id="movl" onclick="closeModal()"></div>
+    <div class="imodal" id="imodal">
+        <div class="mhero" id="mhero"><button class="mx" onclick="closeModal()">×</button></div>
+        <div class="mbody" id="mbody"></div>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="ovl" id="lovl" onclick="closeLogin()"></div>
+    <div class="lmodal" id="lmodal">
+        <button
+            style="position:absolute;top:13px;right:13px;background:none;border:none;font-size:1.2rem;color:var(--muted);"
+            onclick="closeLogin()">×</button>
+        <div id="lcontent"></div>
+    </div>
+
+    <!-- ADDRESS -->
+    <div class="ovl" id="aovl" onclick="closeAddr()"></div>
+    <div class="amodal" id="amodal">
+        <button
+            style="position:absolute;top:12px;right:12px;background:none;border:none;font-size:1.15rem;color:var(--muted);"
+            onclick="closeAddr()">×</button>
+        <h2 style="font-size:1.15rem;font-weight:800;margin-bottom:3px;">Delivery Address</h2>
+        <p style="font-size:.8rem;color:var(--muted);margin-bottom:14px;">Where should we deliver your order?</p>
+        <div id="alist"></div>
+        <button onclick="closeAddr()"
+            style="width:100%;background:var(--org);color:#fff;border:none;border-radius:var(--rsm);padding:11px;font-weight:700;font-family:'Syne',sans-serif;margin-top:3px;">Confirm
+            Address</button>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="succ" id="succ">
+        <div class="succe">🎉</div>
+        <h2>Order Placed!</h2>
+        <p>Your food is being prepared fresh. Get ready for something delicious!</p>
+        <div class="succnum" id="succnum">BGI000000</div>
+        <p style="font-size:.8rem;color:var(--muted);">Estimated delivery: <strong style="color:var(--org)">30
+                minutes</strong></p>
+        <button onclick="closeSucc()"
+            style="background:var(--org);color:#fff;border:none;border-radius:var(--rf);padding:11px 28px;font-weight:700;font-family:'Syne',sans-serif;margin-top:6px;">Track
+            My Order →</button>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toastEl"></div>
+
+    <script>
+        /* ═══════════ DATA ════════════ */
+        const ITEMS = [
+            { id: 0, cat: 'burgers', name: 'Classic BGI Burger', desc: 'Double beef patty, BGI secret sauce, caramelized onions, lettuce, tomato, pickles on a toasted brioche bun.', short: 'Double patty · BGI sauce · brioche bun', price: 299, disc: 0, type: 'nonveg', spice: 1, prep: 15, feat: true, bs: true, emoji: '🍔', rating: 4.8, reviews: 128, cal: 620 },
+            { id: 1, cat: 'burgers', name: 'Paneer Tikka Burger', desc: 'Crispy grilled paneer tikka patty, mint chutney, pickled onions, bell peppers on a sesame bun.', short: 'Paneer tikka · mint chutney · sesame bun', price: 249, disc: 0, type: 'veg', spice: 2, prep: 12, feat: true, bs: false, emoji: '🍔', rating: 4.6, reviews: 89, cal: 480 },
+            { id: 2, cat: 'burgers', name: 'Spicy Chicken Crunch', desc: 'Crispy fried chicken, jalapeños, sriracha mayo, purple cabbage slaw.', short: 'Crispy chicken · jalapeños · sriracha mayo', price: 279, disc: 249, type: 'nonveg', spice: 3, prep: 15, feat: false, bs: true, emoji: '🍔', rating: 4.7, reviews: 104, cal: 540 },
+            { id: 3, cat: 'burgers', name: 'Veg Aloo Tikki Burger', desc: 'Crispy aloo tikki, green chutney, onions, tomato, chaat masala.', short: 'Aloo tikki · green chutney · chaat masala', price: 149, disc: 0, type: 'veg', spice: 1, prep: 10, feat: false, bs: false, emoji: '🍔', rating: 4.3, reviews: 62, cal: 380 },
+            { id: 4, cat: 'pizza', name: 'Paneer Tikka Pizza', desc: 'Wood-fired dough, homemade tomato sauce, fresh mozzarella, spiced paneer, bell peppers, onions.', short: 'Wood-fired · paneer tikka · fresh mozzarella', price: 349, disc: 299, type: 'veg', spice: 2, prep: 22, feat: true, bs: true, emoji: '🍕', rating: 4.7, reviews: 156, cal: 720 },
+            { id: 5, cat: 'pizza', name: 'Chicken BBQ Pizza', desc: 'BBQ sauce, shredded chicken tikka, caramelized onions, jalapeños, mozzarella blend.', short: 'BBQ chicken · jalapeños · mozzarella', price: 389, disc: 0, type: 'nonveg', spice: 2, prep: 24, feat: false, bs: true, emoji: '🍕', rating: 4.6, reviews: 92, cal: 790 },
+            { id: 6, cat: 'pizza', name: 'Classic Margherita', desc: 'Classic tomato sauce, buffalo mozzarella, fresh basil, extra virgin olive oil.', short: 'Classic · buffalo mozzarella · basil', price: 279, disc: 0, type: 'veg', spice: 0, prep: 20, feat: false, bs: false, emoji: '🍕', rating: 4.4, reviews: 74, cal: 610 },
+            { id: 7, cat: 'biryani', name: 'Chicken Dum Biryani', desc: 'Long grain basmati slow-cooked dum style with tender chicken, saffron, whole spices, caramelized onions. Served with raita and salan.', short: 'Dum basmati · saffron · raita', price: 379, disc: 349, type: 'nonveg', spice: 2, prep: 35, feat: true, bs: true, emoji: '🍚', rating: 4.9, reviews: 203, cal: 820 },
+            { id: 8, cat: 'biryani', name: 'Hyderabadi Veg Biryani', desc: 'Fragrant basmati with mixed vegetables, paneer, kewra water, caramelized onions, served with raita.', short: 'Fragrant basmati · paneer · kewra water', price: 299, disc: 0, type: 'veg', spice: 2, prep: 30, feat: false, bs: false, emoji: '🍚', rating: 4.5, reviews: 81, cal: 650 },
+            { id: 9, cat: 'biryani', name: 'Mutton Dum Biryani', desc: 'Slow-cooked mutton biryani with aromatic whole spices, saffron, fried onions.', short: 'Slow-cooked mutton · saffron · whole spices', price: 449, disc: 399, type: 'nonveg', spice: 2, prep: 40, feat: false, bs: true, emoji: '🍚', rating: 4.8, reviews: 134, cal: 890 },
+            { id: 10, cat: 'rolls', name: 'Chicken Tikka Roll', desc: 'Grilled chicken tikka, onion rings, capsicum, mint chutney in a crispy paratha.', short: 'Grilled chicken · mint chutney · crispy paratha', price: 199, disc: 179, type: 'nonveg', spice: 2, prep: 10, feat: true, bs: true, emoji: '🌯', rating: 4.7, reviews: 99, cal: 420 },
+            { id: 11, cat: 'rolls', name: 'Paneer Tikka Roll', desc: 'Grilled paneer tikka, pickled onions, capsicum, mint chutney in a flaky roomali roti.', short: 'Paneer tikka · mint chutney · roomali roti', price: 179, disc: 0, type: 'veg', spice: 2, prep: 10, feat: true, bs: false, emoji: '🌯', rating: 4.5, reviews: 67, cal: 390 },
+            { id: 12, cat: 'momos', name: 'Veg Steam Momos', desc: 'Steamed dumplings filled with spiced cabbage, carrots, onions. Served with spicy schezwan dip.', short: 'Steamed · spiced veg · schezwan dip', price: 149, disc: 0, type: 'veg', spice: 1, prep: 15, feat: true, bs: true, emoji: '🥟', rating: 4.6, reviews: 117, cal: 280 },
+            { id: 13, cat: 'momos', name: 'Chicken Fried Momos', desc: 'Crispy pan-fried chicken dumplings with fiery schezwan sauce and chilli oil.', short: 'Pan-fried · chicken · schezwan sauce', price: 179, disc: 0, type: 'nonveg', spice: 3, prep: 18, feat: false, bs: true, emoji: '🥟', rating: 4.7, reviews: 88, cal: 340 },
+            { id: 14, cat: 'momos', name: 'Paneer Tandoori Momos', desc: 'Tandoor-grilled momos stuffed with spiced paneer, served with mint chutney.', short: 'Tandoor-grilled · paneer · mint chutney', price: 169, disc: 149, type: 'veg', spice: 2, prep: 20, feat: false, bs: false, emoji: '🥟', rating: 4.4, reviews: 53, cal: 310 },
+            { id: 15, cat: 'noodles', name: 'Chicken Hakka Noodles', desc: 'Wok-tossed noodles with chicken, colorful vegetables, soy, chilli, spring onions.', short: 'Wok-tossed · chicken · soy-chilli', price: 249, disc: 199, type: 'nonveg', spice: 2, prep: 12, feat: false, bs: true, emoji: '🍜', rating: 4.6, reviews: 76, cal: 510 },
+            { id: 16, cat: 'noodles', name: 'Veg Hakka Noodles', desc: 'Wok-tossed noodles with crunchy vegetables, soy sauce, chilli sauce, spring onions.', short: 'Wok-tossed · veggies · soy-chilli', price: 199, disc: 0, type: 'veg', spice: 2, prep: 10, feat: true, bs: false, emoji: '🍜', rating: 4.4, reviews: 58, cal: 420 },
+            { id: 17, cat: 'thali', name: 'BGI Special Thali', desc: 'Dal makhani, paneer butter masala, 2 rotis, rice, raita, salad, papad, pickle.', short: 'Dal makhani · paneer · rice · rotis', price: 349, disc: 299, type: 'veg', spice: 1, prep: 25, feat: true, bs: true, emoji: '🍛', rating: 4.8, reviews: 145, cal: 950 },
+            { id: 18, cat: 'desserts', name: 'Chocolate Lava Cake', desc: 'Warm chocolate cake with a molten center. Served with a scoop of vanilla ice cream and chocolate drizzle.', short: 'Molten center · vanilla ice cream', price: 199, disc: 0, type: 'veg', spice: 0, prep: 10, feat: true, bs: true, emoji: '🍫', rating: 4.9, reviews: 211, cal: 480 },
+            { id: 19, cat: 'desserts', name: 'Gulab Jamun', desc: 'Soft homemade gulab jamun soaked in saffron sugar syrup, served hot with rabdi.', short: 'Homemade · saffron syrup · rabdi', price: 129, disc: 0, type: 'veg', spice: 0, prep: 5, feat: false, bs: true, emoji: '🍮', rating: 4.7, reviews: 93, cal: 320 },
+            { id: 20, cat: 'drinks', name: 'BGI Cold Coffee', desc: 'Cold brewed arabica with creamy ice cream, chocolate syrup, whipped cream.', short: 'Cold brewed · ice cream · chocolate', price: 149, disc: 0, type: 'veg', spice: 0, prep: 5, feat: true, bs: true, emoji: '☕', rating: 4.8, reviews: 107, cal: 280 },
+            { id: 21, cat: 'drinks', name: 'Mango Lassi', desc: 'Fresh Alphonso mangoes blended with thick yogurt, cardamom, rose water.', short: 'Fresh alphonso · thick yogurt', price: 129, disc: 0, type: 'veg', spice: 0, prep: 3, feat: false, bs: true, emoji: '🥭', rating: 4.7, reviews: 84, cal: 220 },
+            { id: 22, cat: 'drinks', name: 'Masala Chai', desc: 'House-blend masala chai with ginger, cardamom, cinnamon.', short: 'House blend · ginger · cardamom', price: 49, disc: 0, type: 'veg', spice: 1, prep: 3, feat: false, bs: false, emoji: '🍵', rating: 4.5, reviews: 47, cal: 80 },
+        ];
+        const REVIEWS = [
+            { name: 'Priya S.', stars: 5, text: 'The Chicken Dum Biryani was absolutely heavenly! Came hot, fragrant and perfectly cooked. Will order again!', item: 'Chicken Dum Biryani', date: '2 days ago', col: '#E64A19' },
+            { name: 'Rahul M.', stars: 5, text: 'BGI Cold Coffee is the best in Bhopal — creamy, rich and perfectly sweet. Super fast delivery too!', item: 'BGI Cold Coffee', date: '1 week ago', col: '#1565C0' },
+            { name: 'Sneha T.', stars: 4, text: 'Chocolate Lava Cake is sinfully good 😍 Molten center was perfect. Could be a tad bigger for the price.', item: 'Chocolate Lava Cake', date: '3 days ago', col: '#6A1B9A' },
+            { name: 'Arjun K.', stars: 5, text: 'BGI Special Thali is a complete meal. Dal makhani was restaurant quality. Highly recommended for lunch!', item: 'BGI Special Thali', date: '5 days ago', col: '#2E7D32' },
+            { name: 'Nisha P.', stars: 5, text: 'Paneer Tikka Pizza — never thought I would prefer this over non-veg pizza. Loved every bite!', item: 'Paneer Tikka Pizza', date: '1 day ago', col: '#C62828' },
+            { name: 'Vikram D.', stars: 4, text: 'Veg Steam Momos are addictive with that schezwan dip. Ordered twice this week already!', item: 'Veg Steam Momos', date: '4 days ago', col: '#00695C' },
+        ];
+        const ADDRS = [
+            { icon: '🏠', label: 'Home', text: '42, Sector C, Govind Nagar, MP Nagar Zone II, Bhopal — 462011' },
+            { icon: '💼', label: 'Office', text: 'Plot 15, TT Nagar, Bhopal — 462003' },
+            { icon: '📍', label: 'Other', text: 'Shop 7, Hamidia Road, Near Bus Stand, Bhopal — 462001' },
+        ];
+        let HISTORY = [
+            { num: 'BGI7A3F2B', status: 'delivered', items: 'Chicken Dum Biryani, Mango Lassi', total: 478, date: 'Today, 1:30 PM' },
+            { num: 'BGIC9D2F1', status: 'delivered', items: 'Paneer Tikka Pizza, BGI Cold Coffee', total: 448, date: 'Yesterday, 7:45 PM' },
+        ];
+
+        /* ═══════════ STATE ════════════ */
+        let cart = {}, favs = new Set(), activeCat = 'all', activeF = 'all', srchQ = '', promo = false, sortMode = 0, dark = false, selAddr = 0;
+
+        /* ═══════════ UTILS ════════════ */
+        const ep = it => (it.disc && it.disc < it.price) ? it.disc : it.price;
+        const cartN = () => Object.values(cart).reduce((a, b) => a + b, 0);
+        const cartT = () => Object.keys(cart).reduce((a, id) => a + ep(ITEMS[id]) * cart[id], 0);
+        const spice = s => ['', '🌶', '🌶🌶', '🌶🌶🌶', '🌶🌶🌶🌶'][s] || '';
+
+        /* ═══════════ FEATURED ════════════ */
+        function renderFeat() {
+            const S = [
+                { id: 7, rib: 'BESTSELLER', bg: 'linear-gradient(135deg,#3E1A00,#7B3D00)' },
+                { id: 0, rib: 'POPULAR', bg: 'linear-gradient(135deg,#FF5722,#FF8A65)' },
+                { id: 4, rib: '50% OFF', bg: 'linear-gradient(135deg,#C62828,#EF5350)' },
+                { id: 18, rib: 'MUST TRY', bg: 'linear-gradient(135deg,#AD1457,#E91E8C)' },
+                { id: 17, rib: 'VALUE', bg: 'linear-gradient(135deg,#1B5E20,#43A047)' },
+                { id: 9, rib: 'TRENDING', bg: 'linear-gradient(135deg,#1A237E,#3F51B5)' },
+            ];
+            document.getElementById('featrow').innerHTML = S.map(s => {
+                const it = ITEMS[s.id], p = ep(it);
+                return `<div class="featcard" onclick="openModal(${it.id})">
+      <div class="fimg" style="background:${s.bg}"><span style="font-size:5rem">${it.emoji}</span></div>
+      <div class="frib">${s.rib}</div>
+      <div class="finfo">
+        <div class="fname">${it.name}</div>
+        <div class="fsub">${it.disc && it.disc < it.price ? `<s style="color:#bbb">₹${it.price}</s> ` : ''}₹${p} · ${it.prep} min</div>
+      </div></div>`;
+            }).join('');
+        }
+
+        /* ═══════════ MENU ════════════ */
+        function renderMenu() {
+            let list = ITEMS.filter(it => {
+                if (activeCat !== 'all' && !it.cat.startsWith(activeCat.replace('-', ''))) return false;
+                if (activeF === 'veg' && it.type !== 'veg') return false;
+                if (activeF === 'nonveg' && it.type !== 'nonveg') return false;
+                if (activeF === 'bestseller' && !it.bs) return false;
+                if (activeF === 'featured' && !it.feat) return false;
+                if (activeF === 'discount' && !(it.disc && it.disc < it.price)) return false;
+                if (activeF === 'under200' && ep(it) >= 200) return false;
+                if (srchQ) { const q = srchQ.toLowerCase(); if (!it.name.toLowerCase().includes(q) && !it.cat.includes(q) && !it.short.toLowerCase().includes(q)) return false; }
+                return true;
+            });
+            if (sortMode === 1) list = [...list].sort((a, b) => ep(a) - ep(b));
+            else if (sortMode === 2) list = [...list].sort((a, b) => ep(b) - ep(a));
+            else if (sortMode === 3) list = [...list].sort((a, b) => b.rating - a.rating);
+            document.getElementById('mcnt').textContent = `${list.length} item${list.length !== 1 ? 's' : ''}`;
+            if (!list.length) { document.getElementById('mgrid').innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:58px 0;color:var(--muted)"><div style="font-size:3.2rem;margin-bottom:9px">🔍</div><b>No items found</b><div style="font-size:.8rem;margin-top:4px">Try a different search or filter</div></div>`; return; }
+            document.getElementById('mgrid').innerHTML = list.map((it, i) => {
+                const p = ep(it), hd = it.disc && it.disc < it.price, q = cart[it.id] || 0, fv = favs.has(it.id);
+                return `<div class="mcard" style="animation:fadeUp .33s ${i * .038}s ease both">
+      <div class="mcimg">
+        <span style="font-size:5rem;z-index:1;position:relative">${it.emoji}</span>
+        <div class="mcbadges">
+          ${it.bs ? '<span class="badge bbs">BESTSELLER</span>' : ''}
+          ${it.feat && !it.bs ? '<span class="badge bft">FEATURED</span>' : ''}
+          ${hd ? `<span class="badge boff">${Math.round((it.price - it.disc) / it.price * 100)}% OFF</span>` : ''}
+        </div>
+        <button class="mcfav" onclick="toggleFav(event,${it.id})">${fv ? '❤️' : '🤍'}</button>
+      </div>
+      <div class="mcbody">
+        <div class="mctype">
+          <div class="vd ${it.type}"></div>
+          <span class="vtl">${it.type === 'veg' ? 'Veg' : 'Non-Veg'}</span>
+          ${it.spice ? `<span class="spl">${spice(it.spice)}</span>` : ''}
+        </div>
+        <div class="mcname" onclick="openModal(${it.id})">${it.name}</div>
+        <div class="mcshort">${it.short}</div>
+        <div class="mcmeta">
+          <div class="rpill"><span class="star">★</span><span>${it.rating}</span></div>
+          <div class="tpill">⏱ ${it.prep} min</div>
+          <div class="rvpill">💬 ${it.reviews}</div>
+        </div>
+        <div class="mcpr">
+          <div><span class="pnow">₹${p}</span>${hd ? `<span class="pwas">₹${it.price}</span>` : ''}</div>
+          <div class="aw" id="aw${it.id}">
+            ${q === 0 ? `<button class="abtn" onclick="addIt(${it.id})">+ ADD</button>` : `<div class="ctr on"><button onclick="chg(${it.id},-1)">−</button><span>${q}</span><button onclick="chg(${it.id},1)">+</button></div>`}
+          </div>
+        </div>
+      </div></div>`;
+            }).join('');
+        }
+
+        /* ═══════════ REVIEWS ════════════ */
+        function renderReviews() {
+            document.getElementById('rvgrid').innerHTML = REVIEWS.map(rv => `
+    <div class="rvc">
+      <div class="rvh">
+        <div class="rva" style="background:${rv.col}">${rv.name[0]}</div>
+        <div><div class="rvn">${rv.name}</div><div class="rvd">${rv.date}</div></div>
+        <div class="rvs">${'<span style="color:#FFB300">★</span>'.repeat(rv.stars)}${'<span style="color:#ddd">★</span>'.repeat(5 - rv.stars)}</div>
+      </div>
+      <div class="rvt">${rv.text}</div>
+      <div class="rvi">🍽️ ${rv.item}</div>
+    </div>`).join('');
+        }
+
+        /* ═══════════ CART ════════════ */
+        function addIt(id) { cart[id] = (cart[id] || 0) + 1; renderMenu(); updFloat(); updBadge(); toast(`${ITEMS[id].emoji} Added to cart!`); }
+        function chg(id, d) { cart[id] = (cart[id] || 0) + d; if (cart[id] <= 0) delete cart[id]; renderMenu(); updFloat(); updBadge(); if (document.getElementById('cdrawer').classList.contains('on')) renderCart(); }
+        function updBadge() { const n = cartN(); const b = document.getElementById('cbadge'); b.textContent = n; b.style.display = n ? 'flex' : 'none'; }
+        function updFloat() { const n = cartN(), t = cartT(); const f = document.getElementById('fcart'); if (n > 0) { f.classList.add('on'); document.getElementById('fcc').textContent = n + ' item' + (n > 1 ? 's' : ''); document.getElementById('fct').textContent = '₹' + t; } else f.classList.remove('on'); }
+        function toggleCart() { document.getElementById('cdrawer').classList.toggle('on'); document.getElementById('covl').classList.toggle('on'); renderCart(); }
+        function renderCart() {
+            const ids = Object.keys(cart).filter(k => cart[k] > 0);
+            const body = document.getElementById('cbody'), foot = document.getElementById('cfooter');
+            if (!ids.length) { body.innerHTML = `<div class="empty"><span class="ee">🛒</span><b>Cart is empty</b><div style="font-size:.78rem;margin-top:4px">Add something tasty!</div></div>`; foot.style.display = 'none'; return; }
+            body.innerHTML = ids.map(id => { const it = ITEMS[id], p = ep(it); return `<div class="ci"><div class="cie">${it.emoji}</div><div><div class="cin">${it.name}</div><div class="cip">₹${p} × ${cart[id]} = ₹${p * cart[id]}</div></div><div class="cictl"><button onclick="chg(${id},-1)">−</button><span>${cart[id]}</span><button onclick="chg(${id},1)">+</button></div></div>`; }).join('');
+            const sub = cartT(), del = sub >= 299 ? 0 : 40, tax = Math.round(sub * .05), pf = 5, dis = promo ? Math.min(Math.round(sub * .5), 150) : 0, tot = sub + del + tax + pf - dis;
+            document.getElementById('bill').innerHTML = `<div class="br"><span>Item Total</span><span>₹${sub}</span></div><div class="br"><span>Delivery Fee</span><span style="color:${del ? 'inherit' : 'var(--green)'}">${del ? '₹' + del : '🎉 FREE'}</span></div><div class="br"><span>Platform Fee</span><span>₹${pf}</span></div><div class="br"><span>GST (5%)</span><span>₹${tax}</span></div>${dis ? `<div class="br" style="color:var(--green)"><span>Promo BGIFIRST</span><span>−₹${dis}</span></div>` : ''}<div class="br tot"><span>Grand Total</span><span>₹${tot}</span></div>`;
+            document.getElementById('chklbl').textContent = `Checkout · ₹${tot}`;
+            foot.style.display = 'block';
+        }
+        function applyPromo() { const v = document.getElementById('promo').value.trim().toUpperCase(); const c = { BGIFIRST: '50% off up to ₹150', BGI20: '₹20 off', FREEDEL: 'Free delivery' }; if (c[v]) { promo = true; toast('🎉 Promo applied! ' + c[v]); renderCart(); } else toast('❌ Invalid code. Try BGIFIRST'); }
+        function doCheckout() {
+            if (!cartN()) return;
+            document.getElementById('cdrawer').classList.remove('on'); document.getElementById('covl').classList.remove('on');
+            const num = 'BGI' + Math.random().toString(36).substr(2, 7).toUpperCase();
+            document.getElementById('succnum').textContent = num;
+            document.getElementById('succ').classList.add('on');
+            const ids = Object.keys(cart).filter(k => cart[k] > 0);
+            HISTORY.unshift({ num, status: 'preparing', items: ids.map(id => ITEMS[id].name).join(', '), total: cartT(), date: 'Just now' });
+            cart = {}; promo = false; updBadge(); updFloat();
+        }
+        function closeSucc() { document.getElementById('succ').classList.remove('on'); showTracker(); document.getElementById('msec').scrollIntoView({ behavior: 'smooth' }); }
+
+        /* ═══════════ FILTERS ════════════ */
+        function setCat(el, cat) { activeCat = cat; document.querySelectorAll('.cc').forEach(c => c.classList.remove('on')); el.classList.add('on'); renderMenu(); }
+        function gocat(cat) { activeCat = cat; document.querySelectorAll('.cc').forEach(c => c.classList.toggle('on', c.dataset.cat === cat)); renderMenu(); document.getElementById('msec').scrollIntoView({ behavior: 'smooth' }); }
+        function setF(el, f) { activeF = f; document.querySelectorAll('.fc').forEach(c => c.classList.remove('on')); el.classList.add('on'); renderMenu(); }
+        function liveSearch(v) { srchQ = v.trim(); renderMenu(); }
+        const sortLbls = ['Sort ↕', 'Price ↑', 'Price ↓', 'Rating ↓'];
+        function cycleSort() { sortMode = (sortMode + 1) % 4; document.getElementById('sortlbl').textContent = sortLbls[sortMode]; renderMenu(); }
+
+        /* ═══════════ FAVS ════════════ */
+        function toggleFav(e, id) { e.stopPropagation(); favs.has(id) ? (favs.delete(id), toast('Removed from wishlist')) : (favs.add(id), toast('❤️ Added to wishlist')); document.getElementById('wbtn').textContent = favs.size ? '❤️' : '🤍'; renderMenu(); }
+        function openWishlist() { if (!favs.size) { toast('Wishlist empty! Tap 🤍 on any item'); return; } toast(`❤️ ${favs.size} item${favs.size > 1 ? 's' : ''} in wishlist`); }
+
+        /* ═══════════ MODAL ════════════ */
+        function openModal(id) {
+            const it = ITEMS[id], p = ep(it), hd = it.disc && it.disc < it.price;
+            document.getElementById('mhero').innerHTML = `<button class="mx" onclick="closeModal()">×</button><span style="font-size:8rem">${it.emoji}</span>`;
+            document.getElementById('mbody').innerHTML = `
+    <div class="mctype" style="margin-bottom:7px"><div class="vd ${it.type}"></div><span style="font-size:.72rem;color:var(--muted);font-weight:500">${it.type === 'veg' ? 'Vegetarian' : 'Non-Vegetarian'}</span></div>
+    <div class="mname">${it.name}</div>
+    <div class="mdesc">${it.desc}</div>
+    <div class="mtags">${it.short.split('·').map(t => `<span class="mtag">${t.trim()}</span>`).join('')}</div>
+    <div class="minfo-row">
+      <div class="minfo">⭐ <strong>${it.rating}</strong> (${it.reviews})</div>
+      <div class="minfo">⏱ <strong>${it.prep} min</strong></div>
+      ${it.spice ? `<div class="minfo">${spice(it.spice)} <strong>${['', 'Mild', 'Medium', 'Hot', 'X-Hot'][it.spice]}</strong></div>` : ''}
+      ${it.cal ? `<div class="minfo">🔥 <strong>${it.cal} kcal</strong></div>` : ''}
+    </div>
+    <div class="maddons">
+      <div class="mat">Customise (optional)</div>
+      <div class="marow"><span class="man">Extra Cheese</span><input type="checkbox" class="mack"><span class="marp">+₹30</span></div>
+      <div class="marow"><span class="man">Extra Spicy</span><input type="checkbox" class="mack"><span class="marp">Free</span></div>
+      <div class="marow"><span class="man">Add Raita</span><input type="checkbox" class="mack"><span class="marp">+₹25</span></div>
+    </div>
+    <div class="mbot">
+      <div><span class="mpr">₹${p}</span>${hd ? `<span class="mwas">₹${it.price}</span>` : ''}</div>
+      <button class="madd" onclick="addIt(${it.id});closeModal()">+ Add to Cart</button>
+    </div>`;
+            document.getElementById('imodal').classList.add('on'); document.getElementById('movl').classList.add('on');
+        }
+        function closeModal() { document.getElementById('imodal').classList.remove('on'); document.getElementById('movl').classList.remove('on'); }
+
+        /* ═══════════ TRACKER ════════════ */
+        function showTracker() { const t = document.getElementById('tbar'); t.classList.toggle('on'); if (t.classList.contains('on')) t.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+
+        /* ═══════════ HISTORY ════════════ */
+        function openHistory() {
+            document.getElementById('hovl').classList.add('on'); document.getElementById('hpanel').classList.add('on');
+            document.getElementById('hbody').innerHTML = HISTORY.length
+                ? HISTORY.map(o => `<div class="ohi"><div class="ohh"><div class="ohnum">#${o.num}</div><div class="ohst ${o.status}">${o.status === 'delivered' ? '✓ Delivered' : '⏳ Preparing'}</div></div><div class="ohitems">${o.items}</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px"><div><div class="ohtot">₹${o.total}</div><div class="ohdate">${o.date}</div></div><button class="ohreord" onclick="toast('🔄 Items added to cart!');closeHistory()">Reorder</button></div></div>`).join('')
+                : `<div style="text-align:center;padding:50px 0;color:var(--muted)"><div style="font-size:3rem">📋</div><div style="margin-top:9px">No orders yet</div></div>`;
+        }
+        function closeHistory() { document.getElementById('hovl').classList.remove('on'); document.getElementById('hpanel').classList.remove('on'); }
+
+        /* ═══════════ LOGIN ════════════ */
+        function openLogin() { document.getElementById('lovl').classList.add('on'); document.getElementById('lmodal').classList.add('on'); renderLogin(); }
+        function closeLogin() { document.getElementById('lovl').classList.remove('on'); document.getElementById('lmodal').classList.remove('on'); }
+        function renderLogin() {
+            document.getElementById('lcontent').innerHTML = `
+    <h2>Welcome Back 👋</h2><p style="font-size:.82rem;color:var(--muted);margin-bottom:18px">Sign in to track orders & save favourites</p>
+    <div class="socrow"><button class="socbtn" onclick="socialL('Google')">🔵 Google</button><button class="socbtn" onclick="socialL('Phone')">📱 OTP</button></div>
+    <div class="ldiv">or continue with email</div>
+    <div class="ig"><label>Email</label><input type="email" id="le" placeholder="you@email.com"></div>
+    <div class="ig"><label>Password</label><input type="password" id="lp" placeholder="••••••••"></div>
+    <button class="lsubmit" onclick="doLogin()">Sign In →</button>
+    <div class="lswitch">No account? <a onclick="renderReg()">Register free</a></div>`;
+        }
+        function renderReg() {
+            document.getElementById('lcontent').innerHTML = `
+    <h2>Join BGI Food 🍽️</h2><p style="font-size:.82rem;color:var(--muted);margin-bottom:18px">Create your account for exclusive offers!</p>
+    <div class="ig"><label>Full Name</label><input type="text" id="rn" placeholder="Your Name"></div>
+    <div class="ig"><label>Email</label><input type="email" id="re" placeholder="you@email.com"></div>
+    <div class="ig"><label>Phone</label><input type="tel" id="rph" placeholder="10-digit number"></div>
+    <div class="ig"><label>Password</label><input type="password" id="rp" placeholder="••••••••"></div>
+    <button class="lsubmit" onclick="doReg()">Create Account →</button>
+    <div class="lswitch">Already registered? <a onclick="renderLogin()">Sign in</a></div>`;
+        }
+        function doLogin() { const e = document.getElementById('le').value; if (!e) { toast('Enter your email'); return; } document.getElementById('loginBtn').textContent = '👤 ' + e.split('@')[0]; closeLogin(); toast('👋 Welcome back!'); }
+        function doReg() { const n = document.getElementById('rn').value; if (!n) { toast('Enter your name'); return; } document.getElementById('loginBtn').textContent = '👤 ' + n.split(' ')[0]; closeLogin(); toast('🎉 Welcome ' + n.split(' ')[0] + '! 50% off first order!'); }
+        function socialL(t) { document.getElementById('loginBtn').textContent = '👤 Me'; closeLogin(); toast('✅ Signed in with ' + t); }
+
+        /* ═══════════ ADDRESS ════════════ */
+        function openAddr() {
+            document.getElementById('aovl').classList.add('on'); document.getElementById('amodal').classList.add('on');
+            document.getElementById('alist').innerHTML = ADDRS.map((a, i) => `<div class="aoption ${i === selAddr ? 'on' : ''}" onclick="selA(${i},this)"><span class="aopticon">${a.icon}</span><div><span class="aoptlbl">${a.label}</span><span class="aopttext">${a.text}</span></div></div>`).join('')
+                + `<div class="aoption" onclick="toast('Address form coming soon!')"><span class="aopticon">➕</span><div><span class="aoptlbl">Add New Address</span><span class="aopttext" style="font-size:.77rem">Add a new delivery location</span></div></div>`;
+        }
+        function selA(i, el) { selAddr = i; document.querySelectorAll('.aoption').forEach(a => a.classList.remove('on')); el.classList.add('on'); document.getElementById('addrLbl').textContent = ADDRS[i].label + ' — ' + ADDRS[i].text.split(',')[0]; toast('📍 ' + ADDRS[i].label + ' selected'); }
+        function closeAddr() { document.getElementById('aovl').classList.remove('on'); document.getElementById('amodal').classList.remove('on'); }
+
+        /* ═══════════ THEME ════════════ */
+        function toggleTheme() { dark = !dark; document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light'); document.getElementById('tbtn').textContent = dark ? '☀️' : '🌙'; toast(dark ? '🌙 Dark mode on' : '☀️ Light mode on'); }
+
+        /* ═══════════ TOAST ════════════ */
+        let _tt;
+        function toast(m) { const e = document.getElementById('toastEl'); e.textContent = m; e.classList.add('on'); clearTimeout(_tt); _tt = setTimeout(() => e.classList.remove('on'), 2600); }
+
+        /* ═══════════ INIT ════════════ */
+        renderFeat(); renderMenu(); renderReviews();
+    </script>
+</body>
+
+</html>
